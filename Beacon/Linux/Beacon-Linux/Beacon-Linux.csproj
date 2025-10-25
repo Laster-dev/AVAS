@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Beacon_Linux</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PublishAot>false</PublishAot>
+    <PublishSingleFile>false</PublishSingleFile>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\..\TeamServer\MessagePackLib\BytesTools.cs" Link="MessagePackLib\BytesTools.cs" />
+    <Compile Include="..\..\..\TeamServer\MessagePackLib\MsgPack.cs" Link="MessagePackLib\MsgPack.cs" />
+    <Compile Include="..\..\..\TeamServer\MessagePackLib\MsgPackType.cs" Link="MessagePackLib\MsgPackType.cs" />
+    <Compile Include="..\..\..\TeamServer\MessagePackLib\ReadTools.cs" Link="MessagePackLib\ReadTools.cs" />
+    <Compile Include="..\..\..\TeamServer\MessagePackLib\WriteTools.cs" Link="MessagePackLib\WriteTools.cs" />
+    <Compile Include="..\..\..\TeamServer\MessagePackLib\Zip.cs" Link="MessagePackLib\Zip.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MessagePack" Version="2.5.192" />
+    <PackageReference Include="System.Management" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>

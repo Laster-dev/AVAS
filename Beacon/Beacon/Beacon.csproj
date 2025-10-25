@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6A635B9F-B299-45ED-9BB8-6D3A36E4F0C6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Beacon</RootNamespace>
+    <AssemblyName>Beacon</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Connect\DHCPBeacon.cs" />
+    <Compile Include="Connect\SMBBeacon.cs" />
+    <Compile Include="Helper\A.cs" />
+    <Compile Include="Helper\BeaconHandle.cs" />
+    <Compile Include="Helper\Helper.cs" />
+    <Compile Include="Helper\SetRegistry.cs" />
+    <Compile Include="Helper\WebSocketHelper\ByteOrder.cs" />
+    <Compile Include="Helper\WebSocketHelper\CloseEventArgs.cs" />
+    <Compile Include="Helper\WebSocketHelper\CloseStatusCode.cs" />
+    <Compile Include="Helper\WebSocketHelper\CompressionMethod.cs" />
+    <Compile Include="Helper\WebSocketHelper\ErrorEventArgs.cs" />
+    <Compile Include="Helper\WebSocketHelper\Ext.cs" />
+    <Compile Include="Helper\WebSocketHelper\Fin.cs" />
+    <Compile Include="Helper\WebSocketHelper\HttpBase.cs" />
+    <Compile Include="Helper\WebSocketHelper\HttpRequest.cs" />
+    <Compile Include="Helper\WebSocketHelper\HttpResponse.cs" />
+    <Compile Include="Helper\WebSocketHelper\LogData.cs" />
+    <Compile Include="Helper\WebSocketHelper\Logger.cs" />
+    <Compile Include="Helper\WebSocketHelper\LogLevel.cs" />
+    <Compile Include="Helper\WebSocketHelper\Mask.cs" />
+    <Compile Include="Helper\WebSocketHelper\MessageEventArgs.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\AuthenticationChallenge.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\AuthenticationResponse.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\AuthenticationSchemes.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\Chunk.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\ChunkedRequestStream.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\ChunkStream.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\ClientSslConfiguration.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\Cookie.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\CookieCollection.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\CookieException.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\EndPointListener.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\EndPointManager.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpBasicIdentity.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpConnection.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpDigestIdentity.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpHeaderInfo.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpHeaderType.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpListener.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpListenerAsyncResult.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpListenerContext.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpListenerException.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpListenerPrefix.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpListenerPrefixCollection.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpListenerRequest.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpListenerResponse.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpRequestHeader.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpResponseHeader.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpStatusCode.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpStreamAsyncResult.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpUtility.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\HttpVersion.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\InputChunkState.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\InputState.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\LineState.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\NetworkCredential.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\QueryStringCollection.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\ReadBufferState.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\RequestStream.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\ResponseStream.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\ServerSslConfiguration.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\WebHeaderCollection.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\WebSockets\HttpListenerWebSocketContext.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\WebSockets\TcpListenerWebSocketContext.cs" />
+    <Compile Include="Helper\WebSocketHelper\net\WebSockets\WebSocketContext.cs" />
+    <Compile Include="Helper\WebSocketHelper\Opcode.cs" />
+    <Compile Include="Helper\WebSocketHelper\PayloadData.cs" />
+    <Compile Include="Helper\WebSocketHelper\Rsv.cs" />
+    <Compile Include="Helper\WebSocketHelper\server\HttpRequestEventArgs.cs" />
+    <Compile Include="Helper\WebSocketHelper\server\HttpServer.cs" />
+    <Compile Include="Helper\WebSocketHelper\server\IWebSocketSession.cs" />
+    <Compile Include="Helper\WebSocketHelper\server\ServerState.cs" />
+    <Compile Include="Helper\WebSocketHelper\server\WebSocketBehavior.cs" />
+    <Compile Include="Helper\WebSocketHelper\server\WebSocketServer.cs" />
+    <Compile Include="Helper\WebSocketHelper\server\WebSocketServiceHost.cs" />
+    <Compile Include="Helper\WebSocketHelper\server\WebSocketServiceHost`1.cs" />
+    <Compile Include="Helper\WebSocketHelper\server\WebSocketServiceManager.cs" />
+    <Compile Include="Helper\WebSocketHelper\server\WebSocketSessionManager.cs" />
+    <Compile Include="Helper\WebSocketHelper\WebSocket.cs" />
+    <Compile Include="Helper\WebSocketHelper\WebSocketException.cs" />
+    <Compile Include="Helper\WebSocketHelper\WebSocketFrame.cs" />
+    <Compile Include="Helper\WebSocketHelper\WebSocketState.cs" />
+    <Compile Include="Helper\Win32API.cs" />
+    <Compile Include="Connect\HttpBeacon.cs" />
+    <Compile Include="Connect\ICMPBeacon.cs" />
+    <Compile Include="MessagePackLib\BeaconMsgPack.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\TeamServer\MessagePackLib\BytesTools.cs">
+      <Link>MessagePackLib\BytesTools.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TeamServer\MessagePackLib\MsgPack.cs">
+      <Link>MessagePackLib\MsgPack.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TeamServer\MessagePackLib\MsgPackType.cs">
+      <Link>MessagePackLib\MsgPackType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TeamServer\MessagePackLib\ReadTools.cs">
+      <Link>MessagePackLib\ReadTools.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TeamServer\MessagePackLib\WriteTools.cs">
+      <Link>MessagePackLib\WriteTools.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TeamServer\MessagePackLib\Zip.cs">
+      <Link>MessagePackLib\Zip.cs</Link>
+    </Compile>
+    <Compile Include="Connect\TCPBeacon.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Connect\UDPBeacon.cs" />
+    <Compile Include="Connect\WebSocketBeacon.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

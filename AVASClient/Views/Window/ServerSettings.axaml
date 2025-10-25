@@ -1,0 +1,69 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="using:AVASClient.Models"
+        mc:Ignorable="d" Width="800" Height="600"
+        x:Class="AVASClient.ServerSettings"
+        Title="服务器设置">
+	<Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*">
+		
+		<!-- 服务器连接设置 -->
+		<Border Grid.Row="0" BorderBrush="Gray" BorderThickness="1" Margin="5">
+			<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*">
+				<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="服务器连接设置" FontWeight="Bold" Margin="5" HorizontalAlignment="Center"/>
+				
+				<TextBlock Grid.Row="1" Grid.Column="0" Text="服务器IP地址:" VerticalAlignment="Center" Margin="5"/>
+				<TextBox x:Name="iptext" Text="192.168.138.1" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+				<TextBlock Grid.Row="2" Grid.Column="0" Text="端口:" VerticalAlignment="Center" Margin="5"/>
+				<TextBox x:Name="porttext" Text="50050" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+				<TextBlock Grid.Row="3" Grid.Column="0" Text="密码:" VerticalAlignment="Center" Margin="5"/>
+				<TextBox x:Name="passwordtext" Grid.Row="3" Grid.Column="1" Margin="5" PasswordChar="*"/>
+				
+				<Button Grid.Row="4" Grid.Column="1" Content="连接服务器" HorizontalAlignment="Center" Click="ConnectButton_Click" Margin="5"/>
+			</Grid>
+		</Border>
+
+		<!-- 监听器管理 -->
+		<Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Margin="5">
+			<Grid RowDefinitions="Auto,Auto,*,Auto">
+				<TextBlock Grid.Row="0" Text="监听器管理" FontWeight="Bold" Margin="5" HorizontalAlignment="Center"/>
+				
+				<!-- 工具栏 -->
+				<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+					<Button Content="刷新" Click="RefreshListeners_Click" Margin="2"/>
+					<Button Content="添加监听器" Click="AddListener_Click" Margin="2"/>
+					<Button Content="启动选中" Click="StartSelected_Click" Margin="2"/>
+					<Button Content="停止选中" Click="StopSelected_Click" Margin="2"/>
+					<Button Content="删除选中" Click="RemoveSelected_Click" Margin="2"/>
+				</StackPanel>
+
+				<!-- 监听器列表 -->
+				<ListBox x:Name="ListenersListBox" Grid.Row="2" Margin="5">
+					<ListBox.ItemTemplate>
+						<DataTemplate DataType="models:ListenerInfo">
+							<Grid ColumnDefinitions="*,Auto,Auto,Auto,Auto">
+								<TextBlock Grid.Column="0" Text="{Binding DisplayName}" VerticalAlignment="Center"/>
+								<TextBlock Grid.Column="1" Text="{Binding StatusText}" VerticalAlignment="Center" Margin="10,0"/>
+								<Button Grid.Column="2" Content="启动" Click="StartListener_Click" Tag="{Binding}" Margin="2" IsEnabled="{Binding !IsRunning}"/>
+								<Button Grid.Column="3" Content="停止" Click="StopListener_Click" Tag="{Binding}" Margin="2" IsEnabled="{Binding IsRunning}"/>
+								<Button Grid.Column="4" Content="删除" Click="RemoveListener_Click" Tag="{Binding}" Margin="2"/>
+							</Grid>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+
+				<!-- 状态栏 -->
+				<TextBlock x:Name="StatusTextBlock" Grid.Row="3" Text="就绪" Margin="5"/>
+			</Grid>
+		</Border>
+
+		<!-- 底部按钮 -->
+		<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+			<Button Content="关闭" Click="CloseButton_Click" Margin="5"/>
+		</StackPanel>
+
+	</Grid>
+</Window>

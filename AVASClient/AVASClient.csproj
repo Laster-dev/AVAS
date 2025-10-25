@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+	  
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <BaseOutputPath>..\bin\</BaseOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>none</DebugType>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+	<ItemGroup>
+		<TrimmerRootAssembly Include="AVASClient" />
+		<TrimmerRootAssembly Include="DataList" />
+	</ItemGroup>
+  <ItemGroup>
+    <None Remove="Fonts\未来圆SC Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Fonts\未来圆SC Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\TeamServer\MessagePackLib\BytesTools.cs" Link="MessagePackLib\BytesTools.cs" />
+    <Compile Include="..\TeamServer\MessagePackLib\MsgPack.cs" Link="MessagePackLib\MsgPack.cs" />
+    <Compile Include="..\TeamServer\MessagePackLib\MsgPackType.cs" Link="MessagePackLib\MsgPackType.cs" />
+    <Compile Include="..\TeamServer\MessagePackLib\ReadTools.cs" Link="MessagePackLib\ReadTools.cs" />
+    <Compile Include="..\TeamServer\MessagePackLib\WriteTools.cs" Link="MessagePackLib\WriteTools.cs" />
+    <Compile Include="..\TeamServer\MessagePackLib\Zip.cs" Link="MessagePackLib\Zip.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspose.Drawing" Version="25.9.0" />
+    <PackageReference Include="Avalonia" Version="11.3.6" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.3.6" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.6" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.6" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.6" />
+	  <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.6" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Include="Avalonia.Diagnostics" Version="11.3.6">
+      <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+      <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataList\DataList.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="App.axaml.cs">
+      <DependentUpon>App.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="MainWindow.axaml.cs">
+      <DependentUpon>MainWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Window\Form_RemoteDesktop.axaml.cs">
+      <DependentUpon>Form_RemoteDesktop.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Window\Form_FileManager.axaml.cs">
+      <DependentUpon>Form_FileManager.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Styles\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Width="400" Height="300"
+        x:Class="AVASClient.AddListenerDialog"
+        Title="添加监听器">
+	<Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*">
+		
+		<Grid Grid.Row="0" RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*" Margin="10">
+			<TextBlock Grid.Row="0" Grid.Column="0" Text="监听器类型:" VerticalAlignment="Center" Margin="5"/>
+			<ComboBox x:Name="TypeComboBox" Grid.Row="0" Grid.Column="1" Margin="5" SelectedIndex="0">
+				<ComboBoxItem Content="TCP"/>
+				<ComboBoxItem Content="UDP"/>
+				<ComboBoxItem Content="WebSocket"/>
+				<ComboBoxItem Content="ICMP"/>
+				<ComboBoxItem Content="DHCP"/>
+				<ComboBoxItem Content="HTTP"/>
+				<ComboBoxItem Content="SMB"/>
+				<ComboBoxItem Content="Client"/>
+			</ComboBox>
+
+			<TextBlock Grid.Row="1" Grid.Column="0" Text="绑定地址:" VerticalAlignment="Center" Margin="5"/>
+			<TextBox x:Name="BindAddressTextBox" Text="0.0.0.0" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+			<TextBlock Grid.Row="2" Grid.Column="0" Text="端口:" VerticalAlignment="Center" Margin="5"/>
+			<TextBox x:Name="PortTextBox" Text="8888" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+			<TextBlock Grid.Row="3" Grid.Column="0" Text="描述:" VerticalAlignment="Center" Margin="5"/>
+			<TextBox x:Name="DescriptionTextBox" Text="" Grid.Row="3" Grid.Column="1" Margin="5" IsReadOnly="True"/>
+		</Grid>
+
+		<!-- 底部按钮 -->
+		<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+			<Button Content="确定" Click="OKButton_Click" Margin="5" Width="80"/>
+			<Button Content="取消" Click="CancelButton_Click" Margin="5" Width="80"/>
+		</StackPanel>
+
+	</Grid>
+</Window>

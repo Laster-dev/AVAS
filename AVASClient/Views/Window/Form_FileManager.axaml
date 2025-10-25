@@ -1,0 +1,191 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.DataGrid"
+        mc:Ignorable="d" Width="800" Height="500"
+        x:Class="AVASClient.Form_FileManager"
+        x:CompileBindings="False"
+        Title="File Manager"
+		Loaded="Window_Loaded"
+		Closed="Window_Closed"
+		>
+  <Grid RowDefinitions="Auto,Auto,*,Auto" ColumnDefinitions="*">
+    <!-- Address and navigation bar -->
+    <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Margin="8,8,8,4">
+      <StackPanel Orientation="Horizontal" Spacing="6">
+        <Button x:Name="BtnBack" Width="32" Height="28" Click="BtnBack_OnClick">
+          <Image Source="avares://AVASClient/Assets/Left.png" Width="16" Height="16"/>
+        </Button>
+        <Button x:Name="BtnForward" Width="32" Height="28" Click="BtnForward_OnClick">
+          <Image Source="avares://AVASClient/Assets/Right.png" Width="16" Height="16"/>
+        </Button>
+        <Button x:Name="BtnUp" Width="32" Height="28" Click="BtnUp_OnClick">
+          <Image Source="avares://AVASClient/Assets/Up.png" Width="16" Height="16"/>
+        </Button>
+		<Button x:Name="BtnRefresh" Height="28" MinWidth="72" Click="BtnRefresh_OnClick">
+          <StackPanel Orientation="Horizontal" Spacing="4">
+            <Image Source="avares://AVASClient/Assets/Refresh.png" Width="14" Height="14"/>
+            <TextBlock Text="刷新"/>
+          </StackPanel>
+        </Button>
+
+	  </StackPanel>
+      <TextBox x:Name="AddressBox" Grid.Column="1" Watermark="地址" Margin="8,0" Height="28" KeyDown="AddressBox_OnKeyDown"/>
+      <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="6">
+        <TextBox x:Name="SearchBox" Width="260" Height="28" Watermark="搜索"/>
+        <Button x:Name="BtnSearch" Height="28" MinWidth="64" Click="BtnSearch_OnClick">
+          <StackPanel Orientation="Horizontal" Spacing="4">
+            <Image Source="avares://AVASClient/Assets/Search.png" Width="14" Height="14"/>
+            <TextBlock Text="搜索"/>
+          </StackPanel>
+        </Button>
+      </StackPanel>
+    </Grid>
+
+    <!-- Optional toolbar (now empty) -->
+    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="6" Margin="8,0,8,4"/>
+
+    <!-- Files view -->
+    <Border Grid.Row="2" Margin="8,0,8,8" BorderBrush="#1F000000" BorderThickness="1" CornerRadius="4">
+      <controls:DataGrid x:Name="FilesGrid"
+                         HeadersVisibility="Column"
+                         CanUserResizeColumns="True"
+                         CanUserReorderColumns="True"
+                         IsReadOnly="True"
+						 RowHeight="24"
+                         GridLinesVisibility="Horizontal"
+                         SelectionMode="Extended"
+                         AutoGenerateColumns="False"
+                         DoubleTapped="FilesGrid_OnDoubleTapped"
+                         SelectionChanged="FilesGrid_OnSelectionChanged">
+        <DataGrid.ContextMenu>
+          <ContextMenu>
+            <MenuItem Header="新建文件夹" Click="Ctx_NewFolder_OnClick"/>
+            <MenuItem Header="运行" Click="Ctx_Run_OnClick"/>
+            <MenuItem Header="下载" Click="Ctx_Download_OnClick"/>
+            <MenuItem Header="删除" Click="Ctx_Delete_OnClick"/>
+            <MenuItem Header="跳转到所在位置" Click="Ctx_JumpToLocation_OnClick"/>
+            <MenuItem Header="设置隐藏">
+              <MenuItem.Items>
+                <MenuItem Header="单隐藏" Click="Ctx_HideSingle_OnClick"/>
+                <MenuItem Header="隐藏＋系统文件属性" Click="Ctx_HideSystem_OnClick"/>
+              </MenuItem.Items>
+            </MenuItem>
+            <MenuItem Header="上传文件" Click="Ctx_Upload_OnClick"/>
+            <MenuItem Header="压缩" Click="Ctx_Compress_OnClick"/>
+          </ContextMenu>
+        </DataGrid.ContextMenu>
+		  <DataGrid.Styles>
+			  <!-- 基础样式 -->
+			  <Style Selector="DataGridCell:focus /template/ Grid#FocusVisual">
+				  <Setter Property="IsVisible" Value="False"/>
+			  </Style>
+			  <Style Selector="DataGridCell:current /template/ Rectangle#CurrencyVisual">
+				  <Setter Property="IsVisible" Value="False"/>
+			  </Style>
+
+			  <!-- 基本行样式 -->
+			  <Style Selector="DataGridRow">
+				  <Setter Property="Margin" Value="0"/>
+				  <Setter Property="FontSize" Value="10"/>
+				  <Setter Property="VerticalAlignment" Value="Center"/>
+			  </Style>
+
+			  <!-- 悬停效果 -->
+			  <Style Selector="DataGridRow:pointerover">
+				  <Setter Property="Background" Value="#F5F5F5"/>
+			  </Style>
+
+			  <!-- 选中效果 -->
+			  <Style Selector="DataGridRow:selected">
+				  <Setter Property="Background" Value="#EBF5FF"/>
+			  </Style>
+
+			  <!-- 单元格样式 -->
+			  <Style Selector="DataGridCell">
+				  <Setter Property="FontWeight" Value="Bold"/>
+				  <Setter Property="Padding" Value="0"/>
+				  <Setter Property="BorderThickness" Value="0"/>
+			  </Style>
+
+			  <!-- 表头样式 -->
+			  <Style Selector="DataGridColumnHeader" >
+				  <Setter Property="FontWeight" Value="Bold"/>
+				  <Setter Property="Background" Value="Transparent" />
+				  <Setter Property="HorizontalContentAlignment" Value="Center" />
+				  <Setter Property="VerticalContentAlignment" Value="Center" />
+				  <!--<Setter Property="Foreground" Value="#000000" />-->
+				  <Setter Property="FontSize" Value="14" />
+				  <Setter Property="Padding" Value="0"/>
+				  <Setter Property="BorderThickness" Value="0"/>
+				  <Setter Property="BorderBrush" Value="#0073CF"/>
+				  <Setter Property="MinHeight" Value="32"/>
+				  <Setter Property="Template">
+					  <ControlTemplate>
+						  <Border
+							  Background="{TemplateBinding Background}"
+							  BorderBrush="{TemplateBinding BorderBrush}"
+							  BorderThickness="{TemplateBinding BorderThickness}">
+							  <!-- 只显示内容，不显示箭头 -->
+							  <ContentPresenter
+								  Margin="3"
+								  Content="{TemplateBinding Content}"
+								  HorizontalAlignment="Left"
+								  VerticalAlignment="Center"/>
+						  </Border>
+					  </ControlTemplate>
+				  </Setter>
+			  </Style>
+
+			  <!-- 表头悬停效果 -->
+			  <Style Selector="DataGridColumnHeader:pointerover">
+				  <Setter Property="Background" Value="#E3F2FD"/>
+				  <Setter Property="Foreground" Value="#1976D2"/>
+			  </Style>
+		  </DataGrid.Styles>
+        <controls:DataGrid.Columns>
+          <!-- Icon column -->
+          <controls:DataGridTemplateColumn Width="40">
+            <controls:DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <Image Source="{Binding Icon}" Width="20" Height="20"/>
+              </DataTemplate>
+            </controls:DataGridTemplateColumn.CellTemplate>
+          </controls:DataGridTemplateColumn>
+
+          <!-- Name column -->
+          <controls:DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="*"/>
+
+          <!-- Date modified column -->
+          <controls:DataGridTextColumn Header="修改日期" Binding="{Binding DateModified}" Width="150"/>
+
+          <!-- Type column -->
+          <controls:DataGridTextColumn Header="类型" Binding="{Binding Type}" Width="100"/>
+
+          <!-- Size column (right aligned) -->
+          <controls:DataGridTemplateColumn Header="大小" Width="100">
+            <controls:DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <TextBlock Text="{Binding SizeDisplay}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+              </DataTemplate>
+            </controls:DataGridTemplateColumn.CellTemplate>
+          </controls:DataGridTemplateColumn>
+        </controls:DataGrid.Columns>
+      </controls:DataGrid>
+    </Border>
+
+    <!-- Status bar -->
+    <Border Grid.Row="3" Background="#0F000000" Padding="12,6" BorderBrush="#1F000000" BorderThickness="1,1,1,0">
+      <Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="8">
+        <TextBlock x:Name="StatusText" Text="0 项"/>
+        <TextBlock Grid.Column="1" Text=" 已选中：" Margin="16,0,0,0"/>
+        <TextBlock Grid.Column="2" x:Name="SelectionText" Text="0 项"/>
+        <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+          <ProgressBar x:Name="DownloadProgress" MinWidth="160" Height="10" IsVisible="False" Minimum="0" Maximum="100" Value="0"/>
+          <TextBlock x:Name="DownloadProgressText" IsVisible="False" Text=""/>
+        </StackPanel>
+      </Grid>
+    </Border>
+  </Grid>
+</Window>

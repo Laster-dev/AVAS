@@ -1,0 +1,99 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AVASClient.App"
+             RequestedThemeVariant="Default">
+
+	<Application.Resources>
+		<!-- 注册自定义字体 -->
+		<FontFamily x:Key="DefaultFont">avares://AVASClient/Fonts/#未来圆SC Regular</FontFamily>
+	</Application.Resources>
+
+	<Application.Styles>
+		<FluentTheme DensityStyle="Compact">
+			<FluentTheme.Palettes>
+				<ColorPaletteResources x:Key="Light" Accent="#ff0d72e6" AltHigh="White" AltLow="White" AltMedium="White" AltMediumHigh="White" AltMediumLow="White" BaseHigh="Black" BaseLow="#ffb2b2b2" BaseMedium="#ff757575" BaseMediumHigh="#ff4d4d4d" BaseMediumLow="#ff616161" ChromeAltLow="#ff4d4d4d" ChromeBlackHigh="Black" ChromeBlackLow="#ffb2b2b2" ChromeBlackMedium="#ff4d4d4d" ChromeBlackMediumLow="#ff757575" ChromeDisabledHigh="#ffb2b2b2" ChromeDisabledLow="#ff757575" ChromeGray="#ff616161" ChromeHigh="#ffb2b2b2" ChromeLow="#ffe3e3e3" ChromeMedium="#ffd9d9d9" ChromeMediumLow="#ffe3e3e3" ChromeWhite="White" ListLow="#ffd9d9d9" ListMedium="#ffb2b2b2" RegionColor="#ffe6e6e6" />
+				<ColorPaletteResources x:Key="Dark" Accent="#ff0073cf" AltHigh="Black" AltLow="Black" AltMedium="Black" AltMediumHigh="Black" AltMediumLow="Black" BaseHigh="White" BaseLow="#ff333333" BaseMedium="#ff9a9a9a" BaseMediumHigh="#ffb4b4b4" BaseMediumLow="#ff676767" ChromeAltLow="#ffb4b4b4" ChromeBlackHigh="Black" ChromeBlackLow="#ffb4b4b4" ChromeBlackMedium="Black" ChromeBlackMediumLow="Black" ChromeDisabledHigh="#ff333333" ChromeDisabledLow="#ff9a9a9a" ChromeGray="Gray" ChromeHigh="Gray" ChromeLow="#ff151515" ChromeMedium="#ff1d1d1d" ChromeMediumLow="#ff2c2c2c" ChromeWhite="White" ListLow="#ff1d1d1d" ListMedium="#ff333333" RegionColor="#ff4c4c4c" />
+			</FluentTheme.Palettes>
+		</FluentTheme>
+
+		<StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+		<!-- 全局字体样式设置 - 针对所有控件类型 -->
+		<Style Selector="TextBlock">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="Button">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+		<Style Selector="TextBox">
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="ComboBox">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="ListBox">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="MenuItem">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="Label">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="CheckBox">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="RadioButton">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="DataGrid">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="DataGridCell">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="DataGridColumnHeader">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+
+		<Style Selector="DataGridRowHeader">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		
+		<Style Selector="ToggleButton">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="TabItem">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="TreeViewItem">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="ListBoxItem">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="ComboBoxItem">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="Menu">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="MenuItem">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="ContextMenu">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="ToolTip">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="Window">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+		<Style Selector="UserControl">
+			<Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+		</Style>
+	</Application.Styles>
+</Application>

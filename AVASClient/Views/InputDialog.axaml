@@ -1,0 +1,55 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="AVASClient.InputDialog"
+        x:DataType="local:InputDialog"
+        xmlns:local="using:AVASClient"
+        Title="输入对话框"
+        Width="400"
+        Height="200"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 标题 -->
+        <TextBlock Grid.Row="0" 
+                   Text="{Binding DialogTitle}" 
+                   FontSize="16" 
+                   FontWeight="Bold" 
+                   Margin="0,0,0,10"/>
+        
+        <!-- 消息 -->
+        <TextBlock Grid.Row="1" 
+                   Text="{Binding Message}" 
+                   FontSize="12" 
+                   TextWrapping="Wrap" 
+                   Margin="0,0,0,10"/>
+        
+        <!-- 输入框 -->
+        <TextBox Grid.Row="2" 
+                 x:Name="InputTextBox"
+                 Text="{Binding InputText}"
+                 Watermark="请输入内容..."
+                 Margin="0,0,0,20"/>
+        
+        <!-- 按钮区域 -->
+        <StackPanel Grid.Row="4" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right">
+            <Button Content="确定" 
+                    Click="OK_Click" 
+                    Margin="0,0,10,0"
+                    Width="80"/>
+            <Button Content="取消" 
+                    Click="Cancel_Click"
+                    Width="80"/>
+        </StackPanel>
+    </Grid>
+</Window>

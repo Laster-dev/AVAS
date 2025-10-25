@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AVASClient.Form_Shell"
+        Title="Shell" Width="600" Height="450">
+
+    <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*">
+        <!-- 控制区：选择 Shell 类型 + 控制按钮 -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="8,8,8,0" Spacing="8" VerticalAlignment="Center">
+            <TextBlock Text="Shell:" VerticalAlignment="Center"/>
+            <ComboBox x:Name="CmbShellType" Width="140" SelectedIndex="0" Height="28" VerticalAlignment="Center">
+                <ComboBoxItem Content="CMD"/>
+                <ComboBoxItem Content="PowerShell"/>
+            </ComboBox>
+
+            <CheckBox x:Name="ChkWrap" Content="自动换行" IsChecked="True" Height="28" VerticalAlignment="Center" Checked="OnWrapChecked" Unchecked="OnWrapUnchecked"/>
+            <Button x:Name="BtnClear" Content="清屏" MinWidth="80" Height="28" VerticalAlignment="Center" Click="OnClearClick"/>
+        </StackPanel>
+
+        <!-- 输出显示区 -->
+        <TextBox Grid.Row="1"
+                 x:Name="TxtOutput"
+                 Margin="8,0,8,0"
+                 AcceptsReturn="True"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap"
+                 FontFamily="Consolas, monospace"
+				 VerticalContentAlignment="Top"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+
+        <!-- 输入区 -->
+        <Grid Grid.Row="2" ColumnDefinitions="*,Auto" Margin="8">
+            <TextBox x:Name="TxtInput" Grid.Column="0" AcceptsReturn="False" KeyDown="OnInputKeyDown"/>
+            <Button x:Name="BtnSend" Grid.Column="1" Content="发送" Margin="8,0,0,0" MinWidth="80" Click="OnSendClick"/>
+        </Grid>
+    </Grid>
+</Window>

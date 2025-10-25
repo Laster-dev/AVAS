@@ -1,0 +1,15 @@
+{
+  "ClientPort": 50050,
+  "BeaconPorts": [8888],
+  "BindAddress": "0.0.0.0",
+  "EnableClientListener": true,
+  "EnableBeaconListener": false,
+  "LogLevel": "Info",
+  "EnableConsoleLog": true,
+  "EnableFileLog": true,
+  "EnableColorLog": true,
+  "LogFilePath": "logs/teamserver.log",
+  "ShowLogTimestamp": true,
+  "ShowLogModule": true,
+  "ShowLogSession": true
+}

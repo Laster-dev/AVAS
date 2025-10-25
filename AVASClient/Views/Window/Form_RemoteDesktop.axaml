@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Width="640" Height="400"
+        x:Class="AVASClient.Form_RemoteDesktop"
+        Title="Form_RemoteDesktop"
+		Loaded="Window_Loaded"
+		Closed="Window_Closed"
+		>
+	<Grid RowDefinitions="Auto,*">
+		<StackPanel Orientation="Horizontal" Margin="5,5,5,2" Height="32">
+			<Button Name="MouseControlButton" Width="80" Height="30" Margin="5,0" Click="MouseControlButton_Click" ToolTip.Tip="鼠标控制">
+				<TextBlock Name="MouseControlText" Text="鼠标：关" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</Button>
+			<Button Name="KeyboardControlButton" Width="80" Height="30" Margin="5,0" Click="KeyboardControlButton_Click" ToolTip.Tip="键盘控制">
+				<TextBlock Name="KeyboardControlText" Text="键盘：关" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</Button>
+			<TextBlock Text="屏幕ID:" VerticalAlignment="Center" Margin="10,0,5,0"/>
+			<TextBox Name="ScreenIdTextBox" Width="50" Height="25" Text="0" VerticalAlignment="Center" Margin="0,0,5,0"/>
+			<Button Name="ScreenIdButton" Width="60" Height="25" Margin="5,0" Click="ScreenIdButton_Click" ToolTip.Tip="切换屏幕">
+				<TextBlock Text="切换" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</Button>
+			<Button Name="BlackScreenButton" Width="80" Height="30" Margin="5,0" Click="BlackScreenButton_Click" ToolTip.Tip="黑屏开关">
+				<TextBlock Name="BlackScreenText" Text="黑屏：关" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</Button>
+		</StackPanel>
+		
+		<Image Name="VideoImage"
+			   Grid.Row="1"
+			   HorizontalAlignment="Stretch"
+			   VerticalAlignment="Stretch"
+           Stretch="Fill"
+           PointerMoved="VideoImage_PointerMoved"
+           PointerPressed="VideoImage_PointerPressed"
+           PointerReleased="VideoImage_PointerReleased"
+           PointerWheelChanged="VideoImage_PointerWheelChanged"/>
+	</Grid>
+	
+</Window>
